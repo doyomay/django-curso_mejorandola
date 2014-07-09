@@ -17,3 +17,5 @@ class Enlace(models.Model):
 	timestamp = models.DateTimeField(auto_now_add = True)
 	def __unicode__(self):
 		return "%s -- %s " % (self.titulo,self.enlace)
+	def mis_votos_en_imagen_rosada(self):
+		return 'http://placehold.it/100x100&text=%d+votos'% self.votos
