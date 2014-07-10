@@ -1,5 +1,5 @@
 
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render_to_response, get_object_or_404, render
 
 from django.template.context import RequestContext
 from django.http import HttpResponseRedirect
@@ -34,7 +34,11 @@ def index(request):
 	categorias = Categoria.objects.all()
 	enlaces	= Enlace.objects.order_by("-votos").all()
 	template = "index.html"
-	return render_to_response(template,locals())
+	return render(request,template,locals())
+"""
+para poder trar cosas del contexto global es necesario usar render, se importa de las librerias,
+y se usa pasando el request de la misma forma
+"""
 @login_required
 def minus(request,id_enlace):
 	enlace = Enlace.objects.get(pk=id_enlace)
