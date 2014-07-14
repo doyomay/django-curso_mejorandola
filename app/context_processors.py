@@ -8,8 +8,10 @@ def ejemplo(request):
 
 def menu(request):
 	menu = {'menu': [
-		{'name':'Index','url':reverse('index')},
+		{'name':'Home','url':reverse('index')},
 		{'name': 'Add','url':reverse('add')},
+		{'name': 'Acerca de','url':reverse('about')},
+		{'name': 'Enlaces','url':reverse('enlaces')},
 	]}
 	for item in menu['menu']:
 		if request.path == item['url']:

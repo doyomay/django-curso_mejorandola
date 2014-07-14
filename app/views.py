@@ -72,3 +72,30 @@ def add(request):
 		form = EnlaceForm()
 	template = "form.html"
 	return render_to_response(template,context_instance = RequestContext(request,locals())) 
+
+from django.views.generic import ListView,DetailView
+
+class EnlaceListView(ListView):
+	model = Enlace
+	context_object_name = 'enlaces'
+	def get_template_names(self): ## ojo con los metodos que se sobre escriben 
+		return 'index.html'
+
+class EnlaceDetailView(DetailView):
+	model = Enlace
+	def get_template_names(self): ## ojo con los metodos que se sobre escriben 
+		return 'index.html'
+
+from .serializers import EnlaceSerializer, UserSerializer
+from rest_framework import viewsets
+from django.contrib.auth.models import User
+
+class EnlaceViewSet(viewsets.ModelViewSet):
+	queryset = Enlace.objects.all()
+	serializer_class = EnlaceSerializer
+
+class UserViewSet(viewsets.ModelViewSet):
+	queryset = User.objects.all()
+	serializer_class = UserSerializer
+
+
